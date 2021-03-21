@@ -1,0 +1,87 @@
+<div class="app-container">
+  <div class="actions-container">
+    <div class="sort-columns">
+      <div class="sort-header">Sort</div>
+      <table class="sort-table">
+        <tr class="sort-table-row">
+          <td class="sort-table-cell">Sort by Column</td>
+          <td class="sort-table-cell">
+            <select class="page-size" [(ngModel)]="sortByColumn">
+              <option *ngFor="let col of sortColumns" value="{{ col.field }}">{{ col.name }}</option>
+            </select>
+          </td>
+        </tr>
+        <tr class="sort-table-row">
+          <td class="sort-table-cell">Sort by Order</td>
+          <td class="sort-table-cell sort-order">
+            <input type="radio" id="asc" name="sortOrder" [(ngModel)]="sortByOrder" value="asc">
+            <label for="asc">Ascending</label>
+            <input type="radio" id="desc" name="sortOrder" [(ngModel)]="sortByOrder" value="desc">
+            <label for="desc">Descending</label>
+          </td>
+        </tr>
+        <tr class="sort-table-row">
+          <td class="sort-table-cell"></td>
+          <td class="sort-table-cell">
+            <button type="button" (click)="applySort()">Apply Sort</button>
+            <button type="button" (click)="clearSort()">Clear Sort</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="filter-columns">
+      <div class="filter-header">Filter</div>
+      <table class="filter-table">
+        <tr class="filter-table-row">
+          <td class="filter-table-cell">Filter by Column</td>
+          <td class="filter-table-cell">
+            <select class="page-size" [(ngModel)]="filterByColumn">
+              <option *ngFor="let col of filterColumns" value="{{ col.field }}">{{ col.name }}</option>
+            </select>
+          </td>
+        </tr>
+        <tr class="filter-table-row">
+          <td class="filter-table-cell">Filter by Order</td>
+          <td class="filter-table-cell">
+            <input [(ngModel)]="filterByValue" />
+          </td>
+        </tr>
+        <tr class="filter-table-row">
+          <td class="filter-table-cell"></td>
+          <td class="filter-table-cell">
+            <button type="button" (click)="applyFilter()">Apply Filter</button>
+            <button type="button" (click)="clearFilter()">Clear Filter</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="select-columns">
+      <div class="select-columns-header">
+        <div class="select-columns-cell">
+          <label class="checkbox-container">
+            Select All Columns
+            <input type="checkbox" [attr.checked]="selectAllChecked ? true : null" (click)="selectAllColumns($event)" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+      <div class="select-columns-body">
+        <div class="select-columns-cell" *ngFor="let col of allColumns">
+          <label class="checkbox-container">
+            {{ col.name }}
+            <input type="checkbox" [attr.checked]="col.selected ? true : null" [attr.disabled]="col.isRequired ? true : null" (click)="columnSelected($event, col)" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="table-container">
+    <div><h1>SENSOR READINGS</h1></div>
+    <app-data-table *ngIf="!dataFetchInProgess" [headerColumns]="headerColumns" [groupedColumns]="groupedColumns" [allColumns]="selectedColumns" [rows]="rows"> </app-data-table>
+  </div>
+  <div class="median-table-container">
+    <div><h1>SENSOR MEDIAN DATA</h1></div>
+    <app-data-table *ngIf="!dataFetchInProgess" [headerColumns]="medianColumns" [allColumns]="medianColumns" [rows]="medianRows"> </app-data-table>
+  </div>
+</div>

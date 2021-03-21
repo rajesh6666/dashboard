@@ -1,0 +1,129 @@
+.actions-container {
+  display: flex;
+  width: 100%;
+  padding: 20px 0;
+
+  button {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: #007bff;
+    color: white;
+    margin-right: 5px;
+  }
+
+  select {
+    padding: 5px;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .sort-columns {
+    width: 30%;
+    border: 1px solid #ccc;
+
+    .sort-header {
+      padding: 10px;
+      white-space: nowrap;
+      border-bottom: 1px solid #ccc;
+      background-color: #dddddd;
+      font-weight: 600;
+    }
+
+    .sort-table {
+      .sort-table-row {
+        .sort-table-cell {
+          padding: 10px;
+          white-space: nowrap;
+        }
+        .sort-order {
+          padding: 18px 10px;
+        }
+      }
+    }
+  }
+
+  .filter-columns {
+    width: 30%;
+    border: 1px solid #ccc;
+    margin: 0 10px;
+
+    .filter-header {
+      padding: 10px;
+      white-space: nowrap;
+      border-bottom: 1px solid #ccc;
+      background-color: #dddddd;
+      font-weight: 600;
+    }
+    .filter-table {
+      .filter-table-row {
+        .filter-table-cell {
+          padding: 10px;
+          white-space: nowrap;
+
+          input {
+            padding: 8px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .select-columns {
+    width: 40%;
+    border: 1px solid #ccc;
+
+    input[type=checkbox] {
+      float: left;
+    }
+
+    .select-columns-header {
+      .select-columns-cell {
+        padding: 10px;
+        white-space: nowrap;
+        border-bottom: 1px solid #ccc;
+        background-color: #dddddd;
+        font-weight: 600;
+      }
+    }
+
+    .select-columns-body {
+      display: flex;
+      flex-wrap: wrap;
+      .select-columns-cell {
+        min-width: 200px;
+        padding: 10px;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.table-container {
+  h1 {
+    border-bottom: 1px solid #ccc;
+  }
+}
+.median-table-container {
+  padding: 10px 0;
+  h1 {
+    border-bottom: 1px solid #ccc;
+  }
+}

@@ -1,0 +1,74 @@
+<div class="table__wrapper">
+  <div class="table__container">
+    <table class="data-table">
+      <thead class="data-table-header">
+        <tr class="data-table-header-row">
+          <th class="data-table-header-row-cell" *ngFor="let col of headerColumns" 
+            [attr.rowspan]="!col.group ? 2 : null" 
+            [attr.colspan]="col.group ? col.noOfGroupColumns : null" 
+            [ngStyle]="{ 'min-width': col.width }"
+            [ngClass]="{'grouped-parent-cell': col.noOfGroupColumns > 1}">
+            <div>
+              {{ col.name }}
+            </div>
+          </th>
+        </tr>
+        <tr *ngIf="groupedColumns && groupedColumns.length > 0" class="data-table-header-row">
+          <th class="data-table-header-row-cell grouped-child-cell" *ngFor="let col of groupedColumns" [ngStyle]="{ 'min-width': col.width }">
+            <div>
+              {{ col.name }}
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="data-table-body">
+        <ng-container *ngIf="!noRows; else noRowsTemplate">
+          <tr class="data-table-body-row" *ngFor="let row of displayRows">
+              <td *ngFor="let column of allColumns" class="data-table-body-row-cell" >
+                {{ row[column.field] }}
+              </td>
+          </tr>
+        </ng-container>
+      </tbody>
+      <tfoot class="data-table-footer">
+        <tr class="data-table-footer-row">
+          <td class="data-table-footer-row-cell" [attr.colspan]="2">
+            <div class="records-per-page">
+              <select class="page-size" [ngModel]="selectedPageSize" (ngModelChange)="updatePageSize($event)">
+                <option *ngFor="let size of pageSize" value="{{ size }}">{{ size }}</option>
+              </select>
+            </div>
+          </td>
+          <td class="data-table-footer-row-cell" [attr.colspan]="totalNoOfColumns - 2">
+            <div class="pagination-container">
+              <ul *ngIf="pageInfo.pages && pageInfo.pages.length" class="pagination">
+                <li [ngClass]="{ disabled: pageInfo.currentPage === 1 }">
+                  <a (click)="setPage(1)"> <<</a>
+                </li>
+                <li [ngClass]="{ disabled: pageInfo.currentPage === 1 }">
+                  <a (click)="setPage(pageInfo.currentPage - 1)"> <</a>
+                </li>
+                <li *ngFor="let page of pageInfo.pages" [ngClass]="{ active: pageInfo.currentPage === page }">
+                  <a (click)="setPage(page)">{{ page }}</a>
+                </li>
+                <li [ngClass]="{ disabled: pageInfo.currentPage === pageInfo.totalPages }">
+                  <a (click)="setPage(pageInfo.currentPage + 1)">></a>
+                </li>
+                <li [ngClass]="{ disabled: pageInfo.currentPage === pageInfo.totalPages }">
+                  <a (click)="setPage(pageInfo.totalPages)">>></a>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <ng-template #noRowsTemplate>
+      <tr class="data-table-body-no-row">
+        <td class="data-table-body-no-row-cell" [attr.colspan]="totalNoOfColumns">
+          No Rows
+        </td>
+      </tr>
+    </ng-template>
+  </div>
+</div>

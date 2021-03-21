@@ -1,0 +1,115 @@
+.table__container {
+  max-height: 360px;
+  overflow: auto;
+  width: 100%;
+  border: 1px solid #ccc;
+
+  .data-table {
+    border-collapse: collapse;
+    width: calc(100% - 1px);
+    &-header {
+      &-row {
+        &-cell {
+          min-width: 100px;
+          border-right: 1px solid #ccc;
+          // border-bottom: 1px solid #ccc;
+          text-align: left;
+          white-space: nowrap;
+          background-color: rgb(221, 221, 221);
+          padding: 16px;
+          position: sticky;
+          top: 0px;
+          z-index: 9999;
+        }
+        .grouped-parent-cell {
+          text-align: center;
+        }
+        .grouped-child-cell {
+          background-color: rgb(221, 221, 221);
+          padding: 16px;
+          position: sticky;
+          top: 50px;
+          z-index: 9999;
+        }
+      }
+    }
+    &-body {
+      &-row {
+        &-cell {
+          min-width: 100px;
+          padding: 10px;
+          border-right: 1px solid #ccc;
+          border-bottom: 1px solid #ccc;
+          white-space: nowrap;
+        }
+      }
+      &-no-row {
+        &-cell {
+          height: 200px;
+          text-align: center;
+        }
+      }
+    }
+    &-footer {
+      &-row {
+        &-cell {
+          padding: 16px;
+          position: sticky;
+          bottom: 0px;
+          z-index: 9999;
+          background-color: rgb(221, 221, 221);
+          .records-per-page {
+            .page-size {
+              padding: 5px;
+              font-size: 16px;
+            }
+          }
+
+          .pagination-container {
+            display: flex;
+            justify-content: flex-end;
+
+            .pagination {
+              display: inline-block;
+              margin: unset;
+            }
+
+            .pagination > li {
+              display: inline;
+            }
+
+            .pagination > li > a,
+            .pagination > li > span {
+              cursor: pointer;
+              padding: 6px 8px;
+              margin-left: -1px;
+              line-height: 1.5;
+              color: #007bff;
+              text-decoration: none;
+              background-color: #fff;
+              border: 1px solid #ddd;
+
+              &:hover {
+                color: #23527c;
+                background-color: #eee;
+                border-color: #ddd;
+              }
+            }
+
+            .pagination > .active > a,
+            .pagination > .active > span,
+            .pagination > .active > a:hover,
+            .pagination > .active > span:hover,
+            .pagination > .active > a:focus,
+            .pagination > .active > span:focus {
+              color: #fff;
+              cursor: default;
+              background-color: #007bff;
+              border-color: #007bff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
