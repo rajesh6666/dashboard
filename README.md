@@ -4,9 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Run the project
 
-Clone the project 
-Navigate to sensat-test
-Run `npm install`
+* Clone the project 
+* Navigate to sensat-test
+* Run `npm install`
 
 ## Development server
 
